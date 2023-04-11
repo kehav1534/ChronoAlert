@@ -1,0 +1,31 @@
+########################################## ChronoAlert ##########################################
+#################################################################################################
+					Instructions to Install
+1> Make sure you have python istalled on your computer. You can also install Python setup from the
+   repository.
+   Installing Python Setup>
+   1> Install python from the repository.
+   2> Run the python setup.
+   3> As the Installation windows open, make sure to Check "Add Python 3.9 to PATH" and Click
+      "Install Now"
+   4> Python is now installed on you system.
+   5.1> You must have some additional Python packages : pynput, pypiwin, psutil and plyer.
+      You can easily install it on system by downloading and running AdditionalPackages.bat file
+      on your system.
+      >Click AdditionalPackages.bat.
+      >Click 'raw'.
+      >Code appears on another tab.
+      >Press Ctrl+S, Save As window Appear.
+      >Do not change the file name. Change the Save as type from 'Text Document' to 'All Files'.
+      >Click Save.
+      >Go the to the location where you have saved your file and double click it. It will start
+       downloading the required packages.
+   5.2> You can also download the packages on Command Prompt.
+	pip install pynput
+        pip install pypiwin32
+        pip install psutil
+        pip install plyer
+
+2> Now click 'ChronoAlert-setup.exe' and click 'Download'.
+3> Once Setup is downloded, Install it on your system.
+4> You might need to Restart your system for the boot-up magic work.
