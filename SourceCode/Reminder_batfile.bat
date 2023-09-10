@@ -1,2 +1,2 @@
-python "C:\Program Files\ChronoAlert\python_source\mytimer.py" %*
+python "C:\Program Files\ChronoAlert\python_source\ChronoAlert.py" %*
 pause
