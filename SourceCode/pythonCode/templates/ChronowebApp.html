@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sidebar</title>
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+#sidebar{
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding-top: 120px;
+    background-color: #333;
+    position: fixed;
+    overflow-y: auto;
+    overflow-wrap: break-word; /* Start the sidebar offscreen */
+    transition: left 0.3s ease;
+    top:0;
+    left:-250px;
+}
+#sidebar.active {
+    left: 0px; /* Show the sidebar when active class is added */
+}
+#toggleSidebar {
+    padding: 10px;
+    text-decoration: none;
+}
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar li {
+    padding: 10px;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 15px 15px;
+}
+
+#sidebar a:hover {
+    background-color: #555;
+
+}
+
+.content {
+    margin-left: 20%;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+.scrollable-content {
+    height: auto; /* Set the desired height for the scrollable content */
+    overflow-y: auto;
+    margin-top: 100px;
+  }
+
+.scrollable-content button{
+    justify-items: right;
+}
+input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+.input-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.input-container.active {
+    display: block;
+    margin-bottom: 10px;
+}
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.navbar {
+      background-color: #333;
+      height: 50px;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      width: 100%;
+      position: fixed;
+      z-index: 0;
+      
+
+}
+
+.navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+}
+
+.navbar a:hover {
+      background-color: #555;
+}
+.navbar button{
+    margin-left: 20px;
+    justify-items: left;
+    margin-right: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" id="toggleSidebar">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <div class="input-container" id="inputContainer" style="margin-top: 10px; justify-content: right; justify-items: right;">
+            <input type="text" id="textInput" placeholder="Search User...">
+        </div>
+
+        <form  id="loginForm">
+            <button id="showInputBtn" action="#" method="post" style="justify-content: right; justify-items: right;">Search</button>
+        </form>
+        <form action="\logout" method="post" id="loginForm">
+            <button id="logoutbtn">Logout</button>
+        </form>
+        </a>
+      </div>
+    <div id="sidebar">
+        <ul>
+            <li><a href="#">Notifications</a></li>
+            <li><a href="#">Schedule</a></li>
+
+            <div class="input-container" id="inputContainer">
+            <li><input type="text" id="textInput" placeholder="Type here..."></li>
+            </div>
+            <form action="/logout" method="post" id="loginForm">
+            <li><button id="showInputBtn" action="/logout" method="post">Show Input Box</button></li>
+            </form>
+            
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="scrollable-content">
+            <h1>Welcome to ChronoALert</h1>
+            <p>Create your custom notifications here.</p>
+            <!--<div class="input-container" id="inputContainer">
+                <input type="text" id="textInput" placeholder="Type here...">
+                </div>
+                <form action="/Gdrive" method="post" id="loginForm">
+                <button id="showInputBtn" action="/Gdrive" method="post">Show Input Box</button>
+                </form>-->
+            <hr>
+            <p class="cont">{{data|safe}}</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('delBtn').addEventListener('click', function () {
+            // Reload the current page
+            location.reload();
+        });
+
+        const showInputBtn = document.getElementById('showInputBtn');
+        const inputContainer = document.getElementById('inputContainer');
+    
+        showInputBtn.addEventListener('click', function () {
+        inputContainer.classList.toggle('active');
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+        const toggleButton = document.getElementById("toggleSidebar");
+        const sidebar = document.getElementById("sidebar");
+
+        toggleButton.addEventListener("click", function() {
+        sidebar.classList.toggle("active");
+    });
+});
+      </script>
+</body>
+</html>
