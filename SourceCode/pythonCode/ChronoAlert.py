@@ -143,7 +143,7 @@ def sysBattery():
             )
             break
     while(True):                                                                            #Need to Tested----------------------------<<<<<<<<<<<<<
-        if psutil.sensors_battery().power_plugged == False and battery.percent<=5:
+        if psutil.sensors_battery().power_plugged == False and battery.percent<5:
                 shutdown()
         time.sleep(10)
 
@@ -165,7 +165,7 @@ if __name__ == "__main__":
                 thread.start()
 
     else:
-        os.system("C:/Users/Keshav^ Maheshwari/Desktop/ChronoAlert_/Reminder_vbs.vbs")
+        os.system("Directory/Reminder_vbs.vbs")
 
 
 #
