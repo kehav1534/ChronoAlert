@@ -1,0 +1,24 @@
+[
+  {
+    "nid": 123, "title": "Time to Drink!!",
+    "message": "Drink some water to stay hydrated!",
+    "app_icon": "water_drink_bottle_icon.ico",
+    "timeout": 10,
+    "sleep": 3600
+  },
+ {
+   "nid": 796, "title": "Move yourself!!",
+   "message": "Exercise a little or go out for a nice walk. ^_^",
+   "app_icon": "walk_icon_151006.ico",
+   "timeout": 10,
+   "sleep": 5400
+ }, 
+ {
+   "nid": 9556,
+   "title": "Move yourself!!",
+   "message": "Exercise a little or go out for a nice walk. ^_^",
+   "app_icon": "walk_icon_151006.ico",
+   "timeout": 10,
+   "sleep": 5400
+ }
+]
