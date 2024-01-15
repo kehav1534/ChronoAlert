@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <title>ChronoRemote</title>
+    </head>
+    <body>
+        <div>
+            <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+            <div class="home-container">
+              <div class="home-container1">
+                <div class="home-container2">
+                  <form action="/logout" method="post">
+                    <button class="home-button button">
+                      <span class="home-text">
+                        <span>Log Out</span>
+                        <br />
+                      </span>
+                    </button>
+                  </form>
+                </div>
+                <div class="home-container3">
+                  <img
+                    src="https://play.teleporthq.io/static/svg/default-img.svg"
+                    alt="image"
+                    class="home-image"
+                  />
+                </div>
+                <div class="home-container4">
+                  <span class="home-text03">{{username|safe}}</span>
+                  <span class="home-text04">{{email|safe}}</span>
+                  <span class="home-text05" id="room">{{room|safe}}</span>
+                  <span id="checkbox-selectall">
+                    <input type="checkbox" name="select-all" id="select-all"><label>       Select All({{count|safe}})</label><br>
+                  </span>
+                </div>
+                <div class="home-container3">
+                  <div class="scroll-box">
+                    <div class="checkbox-wrapper">
+                      {{chkbox|safe}}
+                  </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="home-container5">
+                  <button type="button" class="home-button1 button control" value="shutdown" >
+                    <span class="home-text06">
+                      <span>Shut Down</span>
+                      <br />
+                    </span>
+                  </button>
+                  <button type="button" class="home-button2 button control" value="restart">
+                    <span class="home-text09">
+                      <span>Restart</span>
+                      <br />
+                    </span>
+                  </button>
+                  <button type="button" class="home-button3 button control" value="sleep">
+                    <span class="home-text12">Sleep</span>
+                  </button>
+                  <button type="button" class="home-button4 button control" value="hibernate">
+                    <span class="home-text13">
+                      <span>Hibernate</span>
+                      <br />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+          <script>
+
+//Select-all check box
+const selectAllCheckbox = document.getElementById('select-all');
+const otherCheckboxes = document.querySelectorAll('.other-checkbox');
+
+// Add an event listener to the "Select All" checkbox
+selectAllCheckbox.addEventListener('change', function () {
+    otherCheckboxes.forEach(checkbox => {
+        checkbox.checked = this.checked; // Set the state of other checkboxes
+    });
+});
+
+// Add event listeners to other checkboxes to manage the "Select All" checkbox state
+otherCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        const allChecked = Array.from(otherCheckboxes).every(cb => cb.checked);
+        selectAllCheckbox.checked = allChecked;
+    });
+});
+
+
+// Get all checkboxes and buttons by class name
+const buttons = document.querySelectorAll('.control');
+// Add event listeners to buttons
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      const checkboxes = document.getElementsByClassName('other-checkbox');
+    
+      // Array to store checked checkbox values
+      const checkedValues = [];
+
+// Iterate through checkboxes to find checked ones
+      for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          checkedValues.push(checkboxes[i].value); // Add checked checkbox value to the array
+        }
+      }
+
+        const buttonValue = this.value;
+        function sendDataToRoom() {
+          socket.emit("message_from_client", {event: buttonValue, users:checkedValues, room:"{{room|safe}}"});
+        }
+        sendDataToRoom()
+        // Further processing based on button click and selected checkboxes
+    });
+});
+
+
+var socket = io('http://'+"{{ip}}"+':5300');
+var roomCode = "{{room|safe}}";
+///
+      // Add a click event listener to the button
+
+function connectToSocket(){
+  socket.emit("join_room", {room: "{{room|safe}}", username: "WebApp"});
+}
+window.onload = connectToSocket; 
+          </script>
+    </body>
+</html>
